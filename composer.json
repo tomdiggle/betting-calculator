@@ -1,0 +1,12 @@
+{
+    "name": "Betting Calculator",
+    "description": "Betting Calculator",
+    "require": {
+        "phpunit/phpunit": "5.7.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src"
+        }
+    }
+}

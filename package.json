@@ -1,0 +1,13 @@
+{
+  "name": "betting-calculator",
+  "version": "0.0.1",
+  "description": "Betting Calculator",
+  "main": "index.js",
+  "author": "Tom Diggle",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {
+  }
+}
