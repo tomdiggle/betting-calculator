@@ -1,5 +1,9 @@
 <?php
 
+use BettingCalculator\Calculator;
+use BettingCalculator\Selection;
+use BettingCalculator\BetType\TrebleBetType;
+
 class TrebleBetTypeTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -38,7 +42,7 @@ class TrebleBetTypeTest extends PHPUnit_Framework_TestCase
         $selection2 = new Selection("6/4", "won", "1/4");
         $selection3 = new Selection("7/1", "won", "1/4");
         $betType = new TrebleBetType();
-        $calculator = new BetCalculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
+        $calculator = new Calculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(3.25, $result['outlay']);
@@ -52,7 +56,7 @@ class TrebleBetTypeTest extends PHPUnit_Framework_TestCase
         $selection2 = new Selection("6/4", "won", "1/4");
         $selection3 = new Selection("7/1", "won", "1/4");
         $betType = new TrebleBetType();
-        $calculator = new BetCalculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
+        $calculator = new Calculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(3.25, $result['outlay']);
@@ -66,7 +70,7 @@ class TrebleBetTypeTest extends PHPUnit_Framework_TestCase
         $selection2 = new Selection("6/4", "won", "1/4");
         $selection3 = new Selection("7/1", "won", "1/4");
         $betType = new TrebleBetType();
-        $calculator = new BetCalculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
+        $calculator = new Calculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(3.25, $result['outlay']);
@@ -80,7 +84,7 @@ class TrebleBetTypeTest extends PHPUnit_Framework_TestCase
         $selection2 = new Selection("6/4", "won", "1/4");
         $selection3 = new Selection("7/1", "won", "1/4");
         $betType = new TrebleBetType();
-        $calculator = new BetCalculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
+        $calculator = new Calculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(3.25, $result['outlay']);

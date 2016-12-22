@@ -1,5 +1,9 @@
 <?php
 
+use BettingCalculator\Calculator;
+use BettingCalculator\Selection;
+use BettingCalculator\BetType\DoubleBetType;
+
 class DoubleBetTypeTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -37,7 +41,7 @@ class DoubleBetTypeTest extends PHPUnit_Framework_TestCase
         $selection = new Selection("5/2", "won", "1/4");
         $selection2 = new Selection("14/1", "won", "1/4");
         $betType = new DoubleBetType();
-        $calculator = new BetCalculator(6.00, false, [ $selection, $selection2 ], $betType);
+        $calculator = new Calculator(6.00, false, [ $selection, $selection2 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(6.00, $result['outlay']);
@@ -50,7 +54,7 @@ class DoubleBetTypeTest extends PHPUnit_Framework_TestCase
         $selection = new Selection("5/2", "placed", "1/4");
         $selection2 = new Selection("14/1", "won", "1/4");
         $betType = new DoubleBetType();
-        $calculator = new BetCalculator(6.00, false, [ $selection, $selection2 ], $betType);
+        $calculator = new Calculator(6.00, false, [ $selection, $selection2 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(6.00, $result['outlay']);
@@ -63,7 +67,7 @@ class DoubleBetTypeTest extends PHPUnit_Framework_TestCase
         $selection = new Selection("5/2", "lost", "1/4");
         $selection2 = new Selection("14/1", "won", "1/4");
         $betType = new DoubleBetType();
-        $calculator = new BetCalculator(6.00, false, [ $selection, $selection2 ], $betType);
+        $calculator = new Calculator(6.00, false, [ $selection, $selection2 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(6.00, $result['outlay']);
@@ -76,7 +80,7 @@ class DoubleBetTypeTest extends PHPUnit_Framework_TestCase
         $selection = new Selection("5/2", "void", "1/4");
         $selection2 = new Selection("14/1", "won", "1/4");
         $betType = new DoubleBetType();
-        $calculator = new BetCalculator(6.00, false, [ $selection, $selection2 ], $betType);
+        $calculator = new Calculator(6.00, false, [ $selection, $selection2 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(6.00, $result['outlay']);

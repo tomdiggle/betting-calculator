@@ -1,5 +1,7 @@
 <?php
 
+namespace BettingCalculator\BetType;
+
 class SingleBetType implements BetType 
 {
     public function name(): string

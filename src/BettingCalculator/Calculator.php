@@ -1,6 +1,10 @@
 <?php
 
-class BetCalculator {
+namespace BettingCalculator;
+
+use BettingCalculator\BetType\BetType;
+
+class Calculator {
 
     /**
      * The amount of money placed on the bet.

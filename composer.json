@@ -1,12 +1,18 @@
 {
-    "name": "Betting Calculator",
+    "name": "tomdiggle/betting-calculator",
     "description": "Betting Calculator",
-    "require": {
+    "authors": [
+        {
+            "name": "Tom Diggle",
+            "email": "tom@tomdiggle.com"
+        }
+    ],
+    "require-dev": {
         "phpunit/phpunit": "5.7.*"
     },
     "autoload": {
-        "psr-0": {
-            "": "src"
+        "psr-4": {
+            "BettingCalculator\\": "src/BettingCalculator"
         }
     }
 }

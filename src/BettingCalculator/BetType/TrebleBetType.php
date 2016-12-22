@@ -1,15 +1,17 @@
 <?php
 
-class DoubleBetType implements BetType 
+namespace BettingCalculator\BetType;
+
+class TrebleBetType implements BetType 
 {
     public function name(): string
     {
-        return "Double";
+        return "Treble";
     }
 
     public function totalSelections(): int
     {
-        return 2;
+        return 3;
     }
 
     public function totalBets(): int

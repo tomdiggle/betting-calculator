@@ -1,5 +1,9 @@
 <?php
 
+use BettingCalculator\Calculator;
+use BettingCalculator\Selection;
+use BettingCalculator\BetType\SingleBetType;
+
 class SingleBetTypeTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -36,7 +40,7 @@ class SingleBetTypeTest extends PHPUnit_Framework_TestCase
     {
         $selection = new Selection("20/1", "won", "1/4");
         $betType = new SingleBetType();
-        $calculator = new BetCalculator(20.00, false, [ $selection ], $betType);
+        $calculator = new Calculator(20.00, false, [ $selection ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(20.00, $result['outlay']);
@@ -48,7 +52,7 @@ class SingleBetTypeTest extends PHPUnit_Framework_TestCase
     {
         $selection = new Selection("20/1", "placed", "1/4");
         $betType = new SingleBetType();
-        $calculator = new BetCalculator(20.00, false, [ $selection ], $betType);
+        $calculator = new Calculator(20.00, false, [ $selection ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(20.00, $result['outlay']);
@@ -60,7 +64,7 @@ class SingleBetTypeTest extends PHPUnit_Framework_TestCase
     {
         $selection = new Selection("20/1", "lost", "1/4");
         $betType = new SingleBetType();
-        $calculator = new BetCalculator(20.00, false, [ $selection ], $betType);
+        $calculator = new Calculator(20.00, false, [ $selection ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(20.00, $result['outlay']);
@@ -72,7 +76,7 @@ class SingleBetTypeTest extends PHPUnit_Framework_TestCase
     {
         $selection = new Selection("20/1", "void", "1/4");
         $betType = new SingleBetType();
-        $calculator = new BetCalculator(20.00, false, [ $selection ], $betType);
+        $calculator = new Calculator(20.00, false, [ $selection ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(20.00, $result['outlay']);

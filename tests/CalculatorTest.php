@@ -1,6 +1,9 @@
 <?php
 
-class BetCalculatorTest extends PHPUnit_Framework_TestCase
+use BettingCalculator\Calculator;
+use BettingCalculator\BetType\SingleBetType;
+
+class CalculatorTest extends PHPUnit_Framework_TestCase
 {
     /**
      * PHPUnit setup routines
@@ -25,7 +28,7 @@ class BetCalculatorTest extends PHPUnit_Framework_TestCase
     public function testCalculatorWithZeroStakeReturnsZero()
     {
         $betType = new SingleBetType();
-        $calculator = new BetCalculator(0, false, array(), $betType);
+        $calculator = new Calculator(0, false, array(), $betType);
         $result = $calculator->calculate();
 
         $this->assertEmpty($result['outlay']);
@@ -36,7 +39,7 @@ class BetCalculatorTest extends PHPUnit_Framework_TestCase
     public function testCalculatorWithInvalidTotalSelections()
     {
         $betType = new SingleBetType();
-        $calculator = new BetCalculator(20, false, array(), $betType);
+        $calculator = new Calculator(20, false, array(), $betType);
         $result = $calculator->calculate();
 
         $this->assertEmpty($result['outlay']);

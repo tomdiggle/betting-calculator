@@ -1,5 +1,7 @@
 <?php
 
+use BettingCalculator\Selection;
+
 class SelectionClassTest extends PHPUnit_Framework_TestCase
 {	
     /**
@@ -29,6 +31,5 @@ class SelectionClassTest extends PHPUnit_Framework_TestCase
         $this->assertSame("1/2", $selection->odds);
         $this->assertSame("won", $selection->status);
         $this->assertSame("1/4", $selection->eachWayOdds);
-    }
-    
+    }    
 }

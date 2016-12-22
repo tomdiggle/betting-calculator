@@ -1,5 +1,7 @@
 <?php
 
+namespace BettingCalculator\BetType;
+
 interface BetType
 {
     /**
