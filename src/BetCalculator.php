@@ -123,6 +123,14 @@ class BetCalculator {
         // TODO: Get rid of this massive for loop hell.
         for ($j = 0; $j < $this->totalSelections; $j++) {
             $this->calculateRunningTotal(1, $j);
+
+            for ($k = $j+1; $k < $this->totalSelections; $k++) {
+                $this->calculateRunningTotal(2, $k);
+
+                for ($l = $k+1; $l < $this->totalSelections; $l++) {
+                    $this->calculateRunningTotal(3, $l);
+                 }
+            }
         }
 
         return [
