@@ -67,9 +67,10 @@ class Calculator {
     /**
      * The running total of the stake.
      *
-     * @var array
+     * @var int
      **/
     private $runningTotalStake;
+    private $totalStake;
 
     /**
      * An array of the running each way total.
@@ -81,9 +82,10 @@ class Calculator {
     /**
      * The running total of the return.
      *
-     * @var array
+     * @var int
      **/
     private $runningTotalReturn;
+    private $totalReturn;
 
     /**
      * 
@@ -122,28 +124,61 @@ class Calculator {
             return [ 'outlay' => 0, 'returns' => 0, 'profit' => 0 ];
         }
 
-        $this->runningTotal[] = $this->stake;
-
-        // TODO: Get rid of this massive for loop hell.
-        for ($j = 0; $j < $this->totalSelections; $j++) {
-            $this->calculateRunningTotal(1, $j);
-
-            for ($k = $j+1; $k < $this->totalSelections; $k++) {
-                $this->calculateRunningTotal(2, $k);
-
-                for ($l = $k+1; $l < $this->totalSelections; $l++) {
-                    $this->calculateRunningTotal(3, $l);
-                 }
-            }
-        }
+        // This would be nice.
+        // Need to figure out how to add stake up.
+        // In a nice way.
+        // $totalReturn = 0;
+        $totalReturn = $this->calculateTotalReturn(1, 0, [ $this->stake ]);
 
         return [
-            'outlay' => $this->runningTotalStake,
-            'returns' => $this->runningTotalReturn,
-            'profit' => $this->runningTotalReturn - $this->runningTotalStake
+            'outlay' => $this->totalStake,
+            'returns' => $totalReturn,
+            'profit' => $totalReturn - $this->totalStake
         ];
+
+        // // TODO: Get rid of this massive for loop hell.
+        // $this->runningTotal[] = $this->stake;
+        // for ($j = 0; $j < $this->totalSelections; $j++) {
+        //     $this->calculateRunningTotal(1, $j);
+
+        //     for ($k = $j+1; $k < $this->totalSelections; $k++) {
+        //         $this->calculateRunningTotal(2, $k);
+
+        //         for ($l = $k+1; $l < $this->totalSelections; $l++) {
+        //             $this->calculateRunningTotal(3, $l);
+        //          }
+        //     }
+        // }
+
+        // return [
+        //     'outlay' => $this->runningTotalStake,
+        //     'returns' => $this->runningTotalReturn,
+        //     'profit' => $this->runningTotalReturn - $this->runningTotalStake
+        // ];
     }
 
+    private function calculateTotalReturn(int $round, int $selection, array $runningTotal): float
+    {
+        // if ($round > $this->totalSelections) {
+        //     echo 'Returning 0 on round ' . $round;
+        //     return 0;
+        // }
+
+        $runningTotal[$round] = $this->calculateSingle($runningTotal[$round-1], $this->odds[$selection], $this->status[$selection]);
+        
+        if (!($round == 1 && !$this->betType->withSingles()) && ($this->betType->isAccumulator() || $this->betType->totalSelections() == $round)) {
+            echo 'Another round ' . $round;
+            return $runningTotal[$round];
+        }
+
+        return $this->calculateTotalReturn($round+1, $selection+1, $runningTotal);
+    }
+
+    /**
+     * 
+     * 
+     * @return bool
+     */
     private function isInvalidBet(): bool
     {
         if (empty($this->stake)) {
