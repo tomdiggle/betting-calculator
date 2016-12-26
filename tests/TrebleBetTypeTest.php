@@ -45,50 +45,50 @@ class TrebleBetTypeTest extends PHPUnit_Framework_TestCase
         $calculator = new Calculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
         $result = $calculator->calculate();
 
-        // $this->assertSame(3.25, $result['outlay']);
+        $this->assertSame(3.25, $result['outlay']);
         $this->assertSame(227.50, $result['returns']);
-        // $this->assertSame(224.25, $result['profit']);
+        $this->assertSame(224.25, $result['profit']);
     }
 
-    // public function testBetTypeTrebleWithPlacedSelection()
-    // {
-    //     $selection = new Selection("5/2", "placed", "1/4");
-    //     $selection2 = new Selection("6/4", "won", "1/4");
-    //     $selection3 = new Selection("7/1", "won", "1/4");
-    //     $betType = new TrebleBetType();
-    //     $calculator = new Calculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
-    //     $result = $calculator->calculate();
+    public function testBetTypeTrebleWithPlacedSelection()
+    {
+        $selection = new Selection("5/2", "placed", "1/4");
+        $selection2 = new Selection("6/4", "won", "1/4");
+        $selection3 = new Selection("7/1", "won", "1/4");
+        $betType = new TrebleBetType();
+        $calculator = new Calculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
+        $result = $calculator->calculate();
 
-    //     $this->assertSame(3.25, $result['outlay']);
-    //     $this->assertEmpty($result['returns']);
-    //     $this->assertSame(-3.25, $result['profit']);
-    // }
+        $this->assertSame(3.25, $result['outlay']);
+        $this->assertEmpty($result['returns']);
+        $this->assertSame(-3.25, $result['profit']);
+    }
 
-    // public function testBetTypeTrebleWithLostSelection()
-    // {
-    //     $selection = new Selection("5/2", "lost", "1/4");
-    //     $selection2 = new Selection("6/4", "won", "1/4");
-    //     $selection3 = new Selection("7/1", "won", "1/4");
-    //     $betType = new TrebleBetType();
-    //     $calculator = new Calculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
-    //     $result = $calculator->calculate();
+    public function testBetTypeTrebleWithLostSelection()
+    {
+        $selection = new Selection("5/2", "lost", "1/4");
+        $selection2 = new Selection("6/4", "won", "1/4");
+        $selection3 = new Selection("7/1", "won", "1/4");
+        $betType = new TrebleBetType();
+        $calculator = new Calculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
+        $result = $calculator->calculate();
 
-    //     $this->assertSame(3.25, $result['outlay']);
-    //     $this->assertEmpty($result['returns']);
-    //     $this->assertSame(-3.25, $result['profit']);
-    // }
+        $this->assertSame(3.25, $result['outlay']);
+        $this->assertEmpty($result['returns']);
+        $this->assertSame(-3.25, $result['profit']);
+    }
 
-    // public function testBetTypeTrebleWithVoidSelection()
-    // {
-    //     $selection = new Selection("5/2", "void", "1/4");
-    //     $selection2 = new Selection("6/4", "won", "1/4");
-    //     $selection3 = new Selection("7/1", "won", "1/4");
-    //     $betType = new TrebleBetType();
-    //     $calculator = new Calculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
-    //     $result = $calculator->calculate();
+    public function testBetTypeTrebleWithVoidSelection()
+    {
+        $selection = new Selection("5/2", "void", "1/4");
+        $selection2 = new Selection("6/4", "won", "1/4");
+        $selection3 = new Selection("7/1", "won", "1/4");
+        $betType = new TrebleBetType();
+        $calculator = new Calculator(3.25, false, [ $selection, $selection2, $selection3 ], $betType);
+        $result = $calculator->calculate();
 
-    //     $this->assertSame(3.25, $result['outlay']);
-    //     $this->assertSame(65.00, $result['returns']);
-    //     $this->assertSame(61.75, $result['profit']);
-    // }
+        $this->assertSame(3.25, $result['outlay']);
+        $this->assertSame(65.00, $result['returns']);
+        $this->assertSame(61.75, $result['profit']);
+    }
 }

@@ -44,47 +44,47 @@ class DoubleBetTypeTest extends PHPUnit_Framework_TestCase
         $calculator = new Calculator(6.00, false, [ $selection, $selection2 ], $betType);
         $result = $calculator->calculate();
 
-        // $this->assertSame(6.00, $result['outlay']);
+        $this->assertSame(6.00, $result['outlay']);
         $this->assertSame(315.00, $result['returns']);
-        // $this->assertSame(309.00, $result['profit']);
+        $this->assertSame(309.00, $result['profit']);
     }
 
-    // public function testBetTypeDoubleWithPlacedSelection()
-    // {
-    //     $selection = new Selection("5/2", "placed", "1/4");
-    //     $selection2 = new Selection("14/1", "won", "1/4");
-    //     $betType = new DoubleBetType();
-    //     $calculator = new Calculator(6.00, false, [ $selection, $selection2 ], $betType);
-    //     $result = $calculator->calculate();
+    public function testBetTypeDoubleWithPlacedSelection()
+    {
+        $selection = new Selection("5/2", "placed", "1/4");
+        $selection2 = new Selection("14/1", "won", "1/4");
+        $betType = new DoubleBetType();
+        $calculator = new Calculator(6.00, false, [ $selection, $selection2 ], $betType);
+        $result = $calculator->calculate();
 
-    //     $this->assertSame(6.00, $result['outlay']);
-    //     $this->assertEmpty($result['returns']);
-    //     $this->assertSame(-6.00, $result['profit']);
-    // }
+        $this->assertSame(6.00, $result['outlay']);
+        $this->assertEmpty($result['returns']);
+        $this->assertSame(-6.00, $result['profit']);
+    }
 
-    // public function testBetTypeDoubleWithLostSelection()
-    // {
-    //     $selection = new Selection("5/2", "lost", "1/4");
-    //     $selection2 = new Selection("14/1", "won", "1/4");
-    //     $betType = new DoubleBetType();
-    //     $calculator = new Calculator(6.00, false, [ $selection, $selection2 ], $betType);
-    //     $result = $calculator->calculate();
+    public function testBetTypeDoubleWithLostSelection()
+    {
+        $selection = new Selection("5/2", "lost", "1/4");
+        $selection2 = new Selection("14/1", "won", "1/4");
+        $betType = new DoubleBetType();
+        $calculator = new Calculator(6.00, false, [ $selection, $selection2 ], $betType);
+        $result = $calculator->calculate();
 
-    //     $this->assertSame(6.00, $result['outlay']);
-    //     $this->assertEmpty($result['returns']);
-    //     $this->assertSame(-6.00, $result['profit']);
-    // }
+        $this->assertSame(6.00, $result['outlay']);
+        $this->assertEmpty($result['returns']);
+        $this->assertSame(-6.00, $result['profit']);
+    }
 
-    // public function testBetTypeDoubleWithVoidSelection()
-    // {
-    //     $selection = new Selection("5/2", "void", "1/4");
-    //     $selection2 = new Selection("14/1", "won", "1/4");
-    //     $betType = new DoubleBetType();
-    //     $calculator = new Calculator(6.00, false, [ $selection, $selection2 ], $betType);
-    //     $result = $calculator->calculate();
+    public function testBetTypeDoubleWithVoidSelection()
+    {
+        $selection = new Selection("5/2", "void", "1/4");
+        $selection2 = new Selection("14/1", "won", "1/4");
+        $betType = new DoubleBetType();
+        $calculator = new Calculator(6.00, false, [ $selection, $selection2 ], $betType);
+        $result = $calculator->calculate();
 
-    //     $this->assertSame(6.00, $result['outlay']);
-    //     $this->assertSame(90.00, $result['returns']);
-    //     $this->assertSame(84.00, $result['profit']);
-    // }
+        $this->assertSame(6.00, $result['outlay']);
+        $this->assertSame(90.00, $result['returns']);
+        $this->assertSame(84.00, $result['profit']);
+    }
 }
