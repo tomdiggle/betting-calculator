@@ -128,13 +128,29 @@ class Calculator {
 
                     for ($m = $l+1; $m < $this->totalSelections; $m++) {
                         $this->calculateRunningTotal(4, $m);
+
+                        for ($n = $m+1; $n < $this->totalSelections; $n++) {
+                            $this->calculateRunningTotal(5, $n);
+
+                            for ($o = $n+1; $o < $this->totalSelections; $o++) {
+                                $this->calculateRunningTotal(6, $o);
+
+                                for ($p = $o+1; $p < $this->totalSelections; $p++) {
+                                    $this->calculateRunningTotal(7, $p);
+
+                                    for ($q = $p+1; $q < $this->totalSelections; $q++) {
+                                        $this->calculateRunningTotal(8, $q);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
 
         return [
-            'outlay' => $totalStake,
+            'outlay' => round($totalStake, 2),
             'returns' => round($this->runningTotalReturn, 2),
             'profit' => round($this->runningTotalReturn - $totalStake, 2)
         ];
