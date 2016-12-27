@@ -33,7 +33,7 @@ class TrixieBetTypeTest extends PHPUnit_Framework_TestCase
         $this->assertSame(3, $betType->totalSelections());
         $this->assertSame(4, $betType->totalBets());
         $this->assertFalse($betType->withSingles());
-        $this->assertTrue($betType->isAccumulator());
+        $this->assertTrue($betType->isAccumulated());
     }
 
     public function testBetTypeTrixieWithWonSelection()

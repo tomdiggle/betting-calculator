@@ -33,7 +33,7 @@ class PatentBetTypeTest extends PHPUnit_Framework_TestCase
         $this->assertSame(3, $betType->totalSelections());
         $this->assertSame(7, $betType->totalBets());
         $this->assertTrue($betType->withSingles());
-        $this->assertTrue($betType->isAccumulator());
+        $this->assertTrue($betType->isAccumulated());
     }
 
     public function testBetTypePatentWithWonSelection()

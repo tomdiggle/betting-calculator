@@ -37,7 +37,7 @@ class SingleBetTypeTest extends PHPUnit_Framework_TestCase
         $this->assertSame(1, $betType->totalSelections());
         $this->assertSame(1, $betType->totalBets());
         $this->assertTrue($betType->withSingles());
-        $this->assertFalse($betType->isAccumulator());
+        $this->assertFalse($betType->isAccumulated());
     }
 
     public function testBetTypeSingleWithWonSelection()

@@ -37,5 +37,5 @@ interface BetType
      *
      * @return
      */
-    public function isAccumulator(): bool;
+    public function isAccumulated(): bool;
 }

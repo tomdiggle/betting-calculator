@@ -24,7 +24,7 @@ class SingleBetType implements BetType
         return true;
     }
 
-    public function isAccumulator(): bool
+    public function isAccumulated(): bool
     {
         return false;
     }

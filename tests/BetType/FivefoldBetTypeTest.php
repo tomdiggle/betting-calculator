@@ -33,7 +33,7 @@ class FivefoldBetTypeTest extends PHPUnit_Framework_TestCase
         $this->assertSame(5, $betType->totalSelections());
         $this->assertSame(1, $betType->totalBets());
         $this->assertFalse($betType->withSingles());
-        $this->assertFalse($betType->isAccumulator());
+        $this->assertFalse($betType->isAccumulated());
     }
 
     public function testBetTypeFivefoldWithWonSelection()

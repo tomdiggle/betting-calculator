@@ -24,7 +24,7 @@ class FivefoldBetType implements BetType
         return false;
     }
 
-    public function isAccumulator(): bool
+    public function isAccumulated(): bool
     {
         return false;
     }

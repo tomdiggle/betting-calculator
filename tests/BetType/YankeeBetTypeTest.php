@@ -33,7 +33,7 @@ class YankeeBetTypeTest extends PHPUnit_Framework_TestCase
         $this->assertSame(4, $betType->totalSelections());
         $this->assertSame(11, $betType->totalBets());
         $this->assertFalse($betType->withSingles());
-        $this->assertTrue($betType->isAccumulator());
+        $this->assertTrue($betType->isAccumulated());
     }
 
     public function testBetTypeYankeeWithWonSelection()

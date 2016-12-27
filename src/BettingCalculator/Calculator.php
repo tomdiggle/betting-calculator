@@ -203,7 +203,7 @@ class Calculator {
             $this->runningTotalEachWay[$round] = $this->calculateSingleEachWay($this->runningTotalEachWay[$round-1], $this->odds[$selection], $this->eachWayOdds[$selection], $this->status[$selection]); 
         }
         
-        if (!($round == 1 && !$this->betType->withSingles()) && ($this->betType->isAccumulator() || $this->betType->totalSelections() == $round)) {
+        if (!($round == 1 && !$this->betType->withSingles()) && ($this->betType->isAccumulated() || $this->betType->totalSelections() == $round)) {
             // echo 'RunningTotal ' . $this->runningTotalReturn . ' for ' . $this->runningTotal[$round] . '. ';
             $this->runningTotalReturn += $this->runningTotal[$round];
 

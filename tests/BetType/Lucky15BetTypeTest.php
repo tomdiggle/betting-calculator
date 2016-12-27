@@ -33,7 +33,7 @@ class Lucky15BetTypeTest extends PHPUnit_Framework_TestCase
         $this->assertSame(4, $betType->totalSelections());
         $this->assertSame(15, $betType->totalBets());
         $this->assertTrue($betType->withSingles());
-        $this->assertTrue($betType->isAccumulator());
+        $this->assertTrue($betType->isAccumulated());
     }
 
     public function testBetTypeLucky15WithWonSelection()
