@@ -156,11 +156,6 @@ class Calculator {
         ];
     }
 
-    private function calculateTotalStake(): float
-    {
-        return $this->stake * $this->betType->totalBets();
-    }
-
     /**
      * 
      * 
@@ -175,6 +170,16 @@ class Calculator {
         }
 
         return false;
+    }
+
+    /**
+     * Returns the total stake.
+     * 
+     * @return float
+     */
+    private function calculateTotalStake(): float
+    {
+        return $this->stake * $this->betType->totalBets();
     }
 
     /**
