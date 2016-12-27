@@ -6,6 +6,8 @@ use BettingCalculator\BetType\SingleBetType;
 
 class SingleBetTypeTest extends PHPUnit_Framework_TestCase
 {
+    private $selection1;
+
     /**
      * PHPUnit setup routines
      *
@@ -14,6 +16,8 @@ class SingleBetTypeTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->selection1 = new Selection("20/1", "won", "1/4");
     }
     
     /**
@@ -38,9 +42,8 @@ class SingleBetTypeTest extends PHPUnit_Framework_TestCase
 
     public function testBetTypeSingleWithWonSelection()
     {
-        $selection = new Selection("20/1", "won", "1/4");
         $betType = new SingleBetType();
-        $calculator = new Calculator(20.00, false, [ $selection ], $betType);
+        $calculator = new Calculator(20.00, false, [ $this->selection1 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(20.00, $result['outlay']);
@@ -50,9 +53,9 @@ class SingleBetTypeTest extends PHPUnit_Framework_TestCase
 
     public function testBetTypeSingleWithPlacedSelection()
     {
-        $selection = new Selection("20/1", "placed", "1/4");
+        $this->selection1->status = "placed";
         $betType = new SingleBetType();
-        $calculator = new Calculator(20.00, false, [ $selection ], $betType);
+        $calculator = new Calculator(20.00, false, [ $this->selection1 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(20.00, $result['outlay']);
@@ -62,9 +65,9 @@ class SingleBetTypeTest extends PHPUnit_Framework_TestCase
 
     public function testBetTypeSingleWithLostSelection()
     {
-        $selection = new Selection("20/1", "lost", "1/4");
+        $this->selection1->status = "lost";
         $betType = new SingleBetType();
-        $calculator = new Calculator(20.00, false, [ $selection ], $betType);
+        $calculator = new Calculator(20.00, false, [ $this->selection1 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(20.00, $result['outlay']);
@@ -74,13 +77,39 @@ class SingleBetTypeTest extends PHPUnit_Framework_TestCase
 
     public function testBetTypeSingleWithVoidSelection()
     {
-        $selection = new Selection("20/1", "void", "1/4");
+        $this->selection1->status = "void";
         $betType = new SingleBetType();
-        $calculator = new Calculator(20.00, false, [ $selection ], $betType);
+        $calculator = new Calculator(20.00, false, [ $this->selection1 ], $betType);
         $result = $calculator->calculate();
 
         $this->assertSame(20.00, $result['outlay']);
         $this->assertSame(20.00, $result['returns']);
         $this->assertEmpty($result['profit']);
     }
+
+    // Each Way
+
+    public function testBetTypeSingleEachWayWithWonSelection()
+    {
+        $betType = new SingleBetType();
+        $calculator = new Calculator(10.00, true, [ $this->selection1 ], $betType);
+        $result = $calculator->calculate();
+
+        $this->assertSame(20.00, $result['outlay']);
+        $this->assertSame(270.00, $result['returns']);
+        $this->assertSame(250.00, $result['profit']);
+    }
+
+    public function testBetTypeSingleEachWayWithPlacedSelection()
+    {
+        $this->selection1->status = "placed";
+        $betType = new SingleBetType();
+        $calculator = new Calculator(10.00, true, [ $this->selection1 ], $betType);
+        $result = $calculator->calculate();
+
+        $this->assertSame(20.00, $result['outlay']);
+        $this->assertSame(60.00, $result['returns']);
+        $this->assertSame(40.00, $result['profit']);
+    }
+
 }
