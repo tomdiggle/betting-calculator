@@ -104,7 +104,7 @@ class Calculator {
         }, $selections);
 
         $this->eachWayOdds = array_map(function($selection) {
-            return $selection->eachWayOdds;
+            return $this->convertOddsToDecimal($selection->eachWayOdds);
         }, $selections);
     }
 
@@ -117,6 +117,7 @@ class Calculator {
         $totalStake = $this->calculateTotalStake();
 
         $this->runningTotal[] = $this->stake;
+        $this->runningTotalEachWay[] = $this->stake;
         for ($j = 0; $j < $this->totalSelections; $j++) {
             $this->calculateRunningTotal(1, $j);
 
@@ -179,6 +180,10 @@ class Calculator {
      */
     private function calculateTotalStake(): float
     {
+        if ($this->eachWay) {
+            return $this->stake * $this->betType->totalBets() * 2;
+        }
+
         return $this->stake * $this->betType->totalBets();
     }
 
@@ -193,10 +198,18 @@ class Calculator {
     {
         // echo 'R' . $round . ' ';
         $this->runningTotal[$round] = $this->calculateSingle($this->runningTotal[$round-1], $this->odds[$selection], $this->status[$selection]);
+
+        if ($this->eachWay) {
+            $this->runningTotalEachWay[$round] = $this->calculateSingleEachWay($this->runningTotalEachWay[$round-1], $this->odds[$selection], $this->eachWayOdds[$selection], $this->status[$selection]); 
+        }
         
         if (!($round == 1 && !$this->betType->withSingles()) && ($this->betType->isAccumulator() || $this->betType->totalSelections() == $round)) {
-            $this->runningTotalReturn += $this->runningTotal[$round];
             // echo 'RunningTotal ' . $this->runningTotalReturn . ' for ' . $this->runningTotal[$round] . '. ';
+            $this->runningTotalReturn += $this->runningTotal[$round];
+
+            if ($this->eachWay) {
+                $this->runningTotalReturn += $this->runningTotalEachWay[$round];
+            }
         }
     }
 
@@ -212,6 +225,26 @@ class Calculator {
     {
         if ($status == "won") {
             return $stake * ($odds + 1.00);
+        } elseif ($status == "void") {
+            return $stake;
+        }
+
+        return 0;
+    }
+
+    /**
+     * Calculates the return from an each way single bet.
+     *
+     * @param  float  $stake
+     * @param  float  $odds
+     * @param  float  $eachWayOdds
+     * @param  string $status
+     * @return float
+     */
+    private function calculateSingleEachWay(float $stake, float $odds, float $eachWayOdds, string $status): float
+    {
+        if ($status == "won" || $status == "placed") {
+            return $stake + $odds * $eachWayOdds * $stake;
         } elseif ($status == "void") {
             return $stake;
         }
