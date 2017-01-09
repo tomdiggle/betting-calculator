@@ -1,6 +1,7 @@
 {
     "name": "tomdiggle/betting-calculator",
     "description": "Betting Calculator",
+    "license": "MIT",
     "authors": [
         {
             "name": "Tom Diggle",
