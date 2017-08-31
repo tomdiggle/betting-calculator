@@ -68,26 +68,23 @@ class Calculator {
      * An array of the running each way total.
      *
      * @var array
-     **/
+     */
     private $runningTotalEachWay;
 
     /**
      * The running total of the return.
      *
      * @var int
-     **/
+     */
     private $runningTotalReturn;
 
     /**
-     * 
-     *
-     *
      * @param  float     $stake
      * @param  bool      $eachWay
      * @param  array     $selections
      * @param  BetType   $betType
      * @return void
-     **/
+     */
     public function __construct(float $stake, bool $eachWay, array $selections, BetType $betType)
     {
         $this->stake = $stake;
@@ -108,7 +105,10 @@ class Calculator {
         }, $selections);
     }
 
-    public function calculate()
+    /**
+     * @return array
+     */
+    public function calculate(): array
     {
         if ($this->isInvalidBet()) {
             return [ 'outlay' => 0, 'returns' => 0, 'profit' => 0 ];
@@ -158,7 +158,7 @@ class Calculator {
     }
 
     /**
-     * 
+     * Returns true if bet is invalid, false otherwise.
      * 
      * @return bool
      */
@@ -188,7 +188,7 @@ class Calculator {
     }
 
     /**
-     *
+     * Calculates the running total and running each way total.
      *
      * @param  int  $round
      * @param  int  $selection
@@ -196,7 +196,6 @@ class Calculator {
      */
     private function calculateRunningTotal(int $round, int $selection)
     {
-        // echo 'R' . $round . ' ';
         $this->runningTotal[$round] = $this->calculateSingle($this->runningTotal[$round-1], $this->odds[$selection], $this->status[$selection]);
 
         if ($this->eachWay) {
@@ -204,7 +203,6 @@ class Calculator {
         }
         
         if (!($round == 1 && !$this->betType->withSingles()) && ($this->betType->isAccumulated() || $this->betType->totalSelections() == $round)) {
-            // echo 'RunningTotal ' . $this->runningTotalReturn . ' for ' . $this->runningTotal[$round] . '. ';
             $this->runningTotalReturn += $this->runningTotal[$round];
 
             if ($this->eachWay) {
