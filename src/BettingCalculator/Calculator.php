@@ -91,6 +91,7 @@ class Calculator {
         $this->eachWay = $eachWay;
         $this->totalSelections = count($selections);
         $this->betType = $betType;
+        $selections = array_values($selections);
         
         $this->odds = array_map(function($selection) {
             return $this->convertOddsToDecimal($selection->odds);
