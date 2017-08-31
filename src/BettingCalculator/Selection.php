@@ -5,34 +5,26 @@ namespace BettingCalculator;
 class Selection
 {
     /**
-     * 
-     *
      * @var string
-     **/
+     */
     public $odds;
 
     /**
-     * 
-     *
-     * @var BetStatus
-     **/
+     * @var string
+     */
     public $status;
 
     /**
-     * 
-     *
-     * @var EachWayOdds
-     **/
+     * @var string
+     */
     public $eachWayOdds;
 
     /**
-     * 
-     *
      * @var    string   $odds
      * @var    string   $status
      * @var    string   $eachWayOdds
      * @return void
-     **/
+     */
     public function __construct(string $odds, string $status, string $eachWayOdds)
     {
         $this->odds = $odds;
